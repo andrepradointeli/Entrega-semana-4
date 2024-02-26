@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="phaser.js"></script>
+    <script src="scenes/cena1.js"></script>
+    <script src="scenes/cena2.js"></script>
+    <title>Jogo Individual</title>
+</head>
+<body>
+    <script type="text/javascript">
+        const config = {
+            type: Phaser.AUTO,
+            scale: {
+                mode: Phaser.Scale.FIT
+            },
+            autoCenter: Phaser.Scale.CENTER,
+            width: 800, //largura da tela do jogo
+            height: 600, //altura da tela do jogo
+            backgroundColor: '#39addd',
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 0 },
+                    debug: false 
+                }
+            },
+            parent: "game",
+            dom:{
+               createContainer: true,
+            },
+            scene: [cena1, cena2]
+        };
+        
+        var game = new Phaser.Game(config);
+        game.scene.start('cena1');
+    </script>
+
+</body>
+</html>
