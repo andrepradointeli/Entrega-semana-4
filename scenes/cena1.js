@@ -8,7 +8,7 @@ class cena1 extends Phaser.Scene {
         });
     }
 
-    preload() {
+    preload() { //Carregamento de assets
 
         this.load.image('fundo', 'assets/fundoJogoInd.png')
         this.load.image('playButton', 'assets/playbt.png')
@@ -16,6 +16,7 @@ class cena1 extends Phaser.Scene {
     }
 
     create () {
+        //Cria o fundo
         this.add.image(400, 300, 'fundo')
         let playButton = this.add.image(350, this.game.config.height / 4 * 3, 'playButton').setOrigin(0, 0).setInteractive().setVisible(true);
 
@@ -32,8 +33,8 @@ class cena1 extends Phaser.Scene {
         // Adiciona funcionalidade de clique ao botão
         playButton.on('pointerdown', () => {
 
-            //Começa o jogo com a escolha do personagem
-            this.scene.start('cena2', this.game);
+            //Começa a cena de jogo
+            this.scene.start('cena2');
         }, this);
     }
 
