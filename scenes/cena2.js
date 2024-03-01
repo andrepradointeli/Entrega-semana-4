@@ -74,7 +74,13 @@ class cena2 extends Phaser.Scene {
              repeat: -1
          });
 
-         this.score = 0;
+         
+        this.score = 0; // Garante que o score é reiniciado
+        this.ultimoScoreParaCriacaoDeMoedas = 0; // Reinicia o controle para a criação de moedas
+        this.tempoRestante = 30; // Reinicia o temporizador para o valor inicial
+        
+            
+        
  
          this.physics.add.collider(this.platforms, this.player); //Colisao entre o player e as plataformas
 
@@ -169,27 +175,26 @@ class cena2 extends Phaser.Scene {
         }, null, this);
     }
 
-    terminarJogo() { //Funcao terimar jogo
+    terminarJogo() {
         this.physics.pause(); // Pausa a física, efetivamente pausando o jogo
         this.player.setTint(0xff0000);
         this.add.text(200, 200, 'Fim de Jogo', { fontSize: '64px', fill: '#000' }); // Mensagem de fim de jogo
         let playButton = this.add.image(350, this.game.config.height / 4 * 3, 'restartButton').setOrigin(0, 0).setInteractive().setVisible(true);
-
-        // Quando o ponteiro passa por cima do botão, muda para a textura de hover
+    
         playButton.on('pointerover', () => {
             playButton.setTexture('restartButtonHover');
         });
     
-        // Quando o ponteiro sai de cima do botão, volta para a textura original
         playButton.on('pointerout', () => {
             playButton.setTexture('restartButton');
         });
     
         // Adiciona funcionalidade de clique ao botão
         playButton.on('pointerdown', () => {
-
-            //Começa a cena de jogo
-            this.scene.start('cena2', this.game);
-        }, this);    }
+            // Simplesmente reinicia a cena2 sem precisar passar 'this.game'
+            this.scene.restart();
+        });
+    }
+    
     
 }
